@@ -4,7 +4,9 @@ Sistema completo de análisis de empresas Insurtech españolas con agentes espec
 
 ## 🌐 Demo en Vivo
 
-**[Ver Demo Funcionando](https://3dhkilc8x5x3.manus.space)**
+**[Ver Demo Funcionando](https://e5h6i7cvpdd8.manus.space)**
+
+*Nota: Si tienes problemas de acceso por restricciones de red, ejecuta el proyecto localmente siguiendo las instrucciones de instalación.*
 
 ## 📋 Descripción
 
