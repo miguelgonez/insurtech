@@ -1,14 +1,1110 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Agentes Insurtech España</title>
-    <script type="module" crossorigin src="/assets/index-s-OORBiA.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-Zhez_YD7.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+        }
+        
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            width: 320px;
+            background: white;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            overflow-y: auto;
+            border-right: 1px solid #e0e6ed;
+        }
+        
+        .main-content {
+            flex: 1;
+            background: white;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            background: white;
+            padding: 20px 30px;
+            border-bottom: 1px solid #e0e6ed;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .header h1 {
+            color: #1f2937;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
+        .content-area {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 12px;
+        }
+        
+        .logo h2 {
+            color: #1f2937;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .logo-subtitle {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 2px;
+        }
+        
+        .filters-section {
+            margin-bottom: 25px;
+        }
+        
+        .filter-group {
+            margin-bottom: 15px;
+        }
+        
+        .filter-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 6px;
+            display: block;
+        }
+        
+        .filter-input, .filter-select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+            background: white;
+        }
+        
+        .filter-input:focus, .filter-select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .clear-filters {
+            background: #f3f4f6;
+            border: 1px solid #d1d5db;
+            color: #374151;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .clear-filters:hover {
+            background: #e5e7eb;
+        }
+        
+        .companies-count {
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 15px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        
+        .company-card {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .company-card:hover {
+            border-color: #667eea;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+        }
+        
+        .company-card.selected {
+            border-color: #667eea;
+            background: #f0f4ff;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+        }
+        
+        .company-name {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        
+        .company-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .company-badge {
+            background: #667eea;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 500;
+        }
+        
+        .company-location {
+            font-size: 11px;
+            color: #6b7280;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 30px;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            background: none;
+            border: none;
+            color: #6b7280;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+        
+        .tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+        
+        .tab:hover {
+            color: #374151;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .welcome-message {
+            text-align: center;
+            padding: 80px 20px;
+            color: #6b7280;
+        }
+        
+        .welcome-icon {
+            font-size: 64px;
+            margin-bottom: 24px;
+        }
+        
+        .welcome-message h2 {
+            color: #1f2937;
+            margin-bottom: 12px;
+            font-size: 20px;
+        }
+        
+        .company-details {
+            display: none;
+        }
+        
+        .company-details.active {
+            display: block;
+        }
+        
+        .detail-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .detail-title {
+            font-size: 28px;
+            color: #1f2937;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .detail-subtitle {
+            color: #6b7280;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        
+        .value-proposition {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e0e7ff 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .value-proposition h3 {
+            color: #1f2937;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .value-proposition p {
+            color: #374151;
+            line-height: 1.6;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .info-card {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+        
+        .info-label {
+            font-size: 12px;
+            color: #6b7280;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        
+        .info-value {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 600;
+        }
+        
+        .contact-section {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 30px;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .contact-item a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+        
+        .solutions-section {
+            margin-top: 30px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            color: #1f2937;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .section-subtitle {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .solution-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+        
+        .solution-name {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+        
+        .solution-description {
+            color: #6b7280;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+        
+        .solution-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .solution-category {
+            font-size: 12px;
+            color: #6b7280;
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        
+        .tech-tag {
+            background: #f3f4f6;
+            color: #374151;
+            padding: 4px 10px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .query-section {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 30px;
+        }
+        
+        .query-title {
+            font-size: 18px;
+            color: #1f2937;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .query-subtitle {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .query-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .query-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .query-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .query-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        
+        .query-button:hover {
+            background: #5a67d8;
+        }
+        
+        .query-button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+        
+        .query-response {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 16px;
+            white-space: pre-wrap;
+            line-height: 1.6;
+            color: #374151;
+        }
+        
+        .analysis-section {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 24px;
+        }
+        
+        .analysis-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .analysis-button {
+            background: white;
+            border: 1px solid #d1d5db;
+            padding: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+        
+        .analysis-button:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+        
+        .analysis-button-title {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 4px;
+        }
+        
+        .analysis-button-desc {
+            font-size: 12px;
+            color: #6b7280;
+        }
+        
+        .loading {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #6b7280;
+        }
+        
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid #e5e7eb;
+            border-top: 2px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                max-height: 400px;
+                order: 1;
+            }
+            
+            .main-content {
+                order: 2;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs {
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            
+            .tab {
+                flex-shrink: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">🏢</div>
+                <div>
+                    <h2>Insurtech España</h2>
+                    <div class="logo-subtitle">Sistema de Agentes IA</div>
+                </div>
+            </div>
+            
+            <div class="filters-section">
+                <div class="filter-group">
+                    <label class="filter-label">🔍 Búsqueda</label>
+                    <input type="text" id="searchInput" class="filter-input" placeholder="Buscar empresas..." onkeyup="applyFilters()">
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">🏢 Empresa</label>
+                    <select id="companyFilter" class="filter-select" onchange="applyFilters()">
+                        <option value="">Todas las empresas</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">📍 Ubicación</label>
+                    <select id="locationFilter" class="filter-select" onchange="applyFilters()">
+                        <option value="">Todas las ubicaciones</option>
+                        <option value="Madrid">Madrid</option>
+                        <option value="Barcelona">Barcelona</option>
+                        <option value="Valencia">Valencia</option>
+                        <option value="Sevilla">Sevilla</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">💡 Tipo de Solución</label>
+                    <select id="solutionFilter" class="filter-select" onchange="applyFilters()">
+                        <option value="">Todos los tipos</option>
+                        <option value="MGA Digital">MGA Digital</option>
+                        <option value="Insurance-as-a-Service">Insurance-as-a-Service</option>
+                        <option value="Plataforma de Beneficios">Plataforma de Beneficios</option>
+                        <option value="Tecnología de Siniestros">Tecnología de Siniestros</option>
+                        <option value="Telemedicina Veterinaria">Telemedicina Veterinaria</option>
+                        <option value="Seguros Tecnología">Seguros Tecnología</option>
+                        <option value="Ciberseguros">Ciberseguros</option>
+                        <option value="Seguros de Vida Digital">Seguros de Vida Digital</option>
+                        <option value="Seguros para Mascotas">Seguros para Mascotas</option>
+                        <option value="Asistencia Digital">Asistencia Digital</option>
+                    </select>
+                </div>
+                
+                <button class="clear-filters" onclick="clearFilters()" id="clearFiltersBtn" style="display: none;">
+                    🗑️ Limpiar filtros
+                </button>
+            </div>
+            
+            <div class="companies-count" id="companiesCount">
+                Empresas (0)
+            </div>
+            
+            <div id="companiesList">
+                <!-- Las empresas se cargarán aquí -->
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="header">
+                <h1>Sistema de Agentes Insurtech España</h1>
+                <p>Análisis inteligente de empresas y mercado con IA especializada</p>
+            </div>
+            
+            <div class="content-area">
+                <div class="tabs">
+                    <button class="tab active" onclick="switchTab('consultas')">
+                        📋 Consultas por Empresa
+                    </button>
+                    <button class="tab" onclick="switchTab('analisis')">
+                        📊 Análisis Transversal
+                    </button>
+                    <button class="tab" onclick="switchTab('demo')">
+                        🎯 Demo
+                    </button>
+                </div>
+                
+                <div id="consultasTab" class="tab-content active">
+                    <div id="welcomeMessage" class="welcome-message">
+                        <div class="welcome-icon">📊</div>
+                        <h2>Selecciona una empresa del menú lateral</h2>
+                        <p>Explora el ecosistema Insurtech español con información detallada de cada empresa y consulta a agentes especializados</p>
+                    </div>
+                    
+                    <div id="companyDetails" class="company-details">
+                        <!-- Los detalles de la empresa se mostrarán aquí -->
+                    </div>
+                </div>
+                
+                <div id="analisisTab" class="tab-content">
+                    <div class="analysis-section">
+                        <h2 class="section-title">Análisis Transversal del Ecosistema</h2>
+                        <p class="section-subtitle">Ejecuta análisis comparativos y obtén insights del mercado Insurtech español</p>
+                        
+                        <div class="analysis-buttons">
+                            <div class="analysis-button" onclick="runAnalysis('market')">
+                                <div class="analysis-button-title">📈 Análisis de Mercado</div>
+                                <div class="analysis-button-desc">Métricas generales, financiación y distribución</div>
+                            </div>
+                            <div class="analysis-button" onclick="runAnalysis('geographic')">
+                                <div class="analysis-button-title">🗺️ Análisis Geográfico</div>
+                                <div class="analysis-button-desc">Distribución por ciudades y regiones</div>
+                            </div>
+                            <div class="analysis-button" onclick="runAnalysis('business')">
+                                <div class="analysis-button-title">💼 Modelos de Negocio</div>
+                                <div class="analysis-button-desc">Comparativa de estrategias empresariales</div>
+                            </div>
+                        </div>
+                        
+                        <div id="analysisResponse" style="display: none;">
+                            <!-- Respuesta del análisis -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="demoTab" class="tab-content">
+                    <div class="analysis-section">
+                        <h2 class="section-title">Demo del Sistema</h2>
+                        <p class="section-subtitle">Prueba automática de todas las funcionalidades del sistema</p>
+                        
+                        <div class="analysis-buttons">
+                            <div class="analysis-button" onclick="runDemo()">
+                                <div class="analysis-button-title">🎯 Ejecutar Demo Completo</div>
+                                <div class="analysis-button-desc">Prueba automática de agentes y análisis</div>
+                            </div>
+                        </div>
+                        
+                        <div id="demoResponse" style="display: none;">
+                            <!-- Respuesta del demo -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let companies = [];
+        let selectedCompany = null;
+        let filteredCompanies = [];
+
+        // Cargar empresas al iniciar
+        async function loadCompanies() {
+            try {
+                const response = await fetch('/api/companies');
+                const data = await response.json();
+                if (data.success) {
+                    companies = data.companies;
+                    filteredCompanies = [...companies];
+                    populateFilters();
+                    renderCompanies();
+                    updateCompaniesCount();
+                }
+            } catch (error) {
+                console.error('Error cargando empresas:', error);
+            }
+        }
+
+        // Poblar filtros desplegables
+        function populateFilters() {
+            const companyFilter = document.getElementById('companyFilter');
+            companies.forEach(company => {
+                const option = document.createElement('option');
+                option.value = company.nombre_oficial;
+                option.textContent = company.nombre_oficial;
+                companyFilter.appendChild(option);
+            });
+        }
+
+        // Aplicar filtros
+        function applyFilters() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const companyFilter = document.getElementById('companyFilter').value;
+            const locationFilter = document.getElementById('locationFilter').value;
+            const solutionFilter = document.getElementById('solutionFilter').value;
+
+            filteredCompanies = companies.filter(company => {
+                const matchesSearch = !searchTerm || 
+                    company.nombre_oficial.toLowerCase().includes(searchTerm) ||
+                    company.modelo_negocio.toLowerCase().includes(searchTerm) ||
+                    company.ciudad.toLowerCase().includes(searchTerm);
+                
+                const matchesCompany = !companyFilter || company.nombre_oficial === companyFilter;
+                const matchesLocation = !locationFilter || company.ciudad === locationFilter;
+                const matchesSolution = !solutionFilter || company.modelo_negocio === solutionFilter;
+
+                return matchesSearch && matchesCompany && matchesLocation && matchesSolution;
+            });
+
+            renderCompanies();
+            updateCompaniesCount();
+            updateClearButton();
+        }
+
+        // Limpiar filtros
+        function clearFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('companyFilter').value = '';
+            document.getElementById('locationFilter').value = '';
+            document.getElementById('solutionFilter').value = '';
+            applyFilters();
+        }
+
+        // Actualizar botón de limpiar
+        function updateClearButton() {
+            const hasFilters = document.getElementById('searchInput').value ||
+                             document.getElementById('companyFilter').value ||
+                             document.getElementById('locationFilter').value ||
+                             document.getElementById('solutionFilter').value;
+            
+            document.getElementById('clearFiltersBtn').style.display = hasFilters ? 'block' : 'none';
+        }
+
+        // Actualizar contador
+        function updateCompaniesCount() {
+            document.getElementById('companiesCount').textContent = `Empresas (${filteredCompanies.length})`;
+        }
+
+        // Renderizar lista de empresas
+        function renderCompanies() {
+            const companiesList = document.getElementById('companiesList');
+            
+            companiesList.innerHTML = filteredCompanies.map(company => `
+                <div class="company-card" onclick="selectCompany(${company.id})" data-company-id="${company.id}">
+                    <div class="company-name">${company.nombre_oficial}</div>
+                    <div class="company-meta">
+                        <span class="company-badge">${company.modelo_negocio}</span>
+                        <span class="company-badge">${company.tipo_relacion}</span>
+                    </div>
+                    <div class="company-location">📍 ${company.ciudad}</div>
+                </div>
+            `).join('');
+        }
+
+        // Cambiar pestaña
+        function switchTab(tabName) {
+            // Actualizar pestañas
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tabName + 'Tab').classList.add('active');
+        }
+
+        // Seleccionar empresa
+        async function selectCompany(companyId) {
+            try {
+                const response = await fetch(`/api/companies/${companyId}`);
+                const data = await response.json();
+                if (data.success) {
+                    selectedCompany = data.company;
+                    renderCompanyDetails();
+                    
+                    // Actualizar estado activo
+                    document.querySelectorAll('.company-card').forEach(card => {
+                        card.classList.remove('selected');
+                    });
+                    document.querySelector(`[data-company-id="${companyId}"]`).classList.add('selected');
+                    
+                    // Cambiar a pestaña de consultas si no está activa
+                    if (!document.getElementById('consultasTab').classList.contains('active')) {
+                        switchTab('consultas');
+                        document.querySelector('.tab').classList.add('active');
+                    }
+                }
+            } catch (error) {
+                console.error('Error cargando empresa:', error);
+            }
+        }
+
+        // Renderizar detalles de empresa
+        function renderCompanyDetails() {
+            if (!selectedCompany) return;
+            
+            document.getElementById('welcomeMessage').style.display = 'none';
+            document.getElementById('companyDetails').style.display = 'block';
+            document.getElementById('companyDetails').classList.add('active');
+            
+            document.getElementById('companyDetails').innerHTML = `
+                <div class="detail-header">
+                    <div class="detail-title">${selectedCompany.nombre_oficial}</div>
+                    <div class="detail-subtitle">${selectedCompany.descripcion_corta}</div>
+                </div>
+                
+                <div class="value-proposition">
+                    <h3>Propuesta de Valor:</h3>
+                    <p>${selectedCompany.propuesta_valor}</p>
+                </div>
+                
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-icon" style="background: #dbeafe; color: #1d4ed8;">🏢</div>
+                        <div class="info-label">Modelo de Negocio</div>
+                        <div class="info-value">${selectedCompany.modelo_negocio}</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon" style="background: #dcfce7; color: #15803d;">👥</div>
+                        <div class="info-label">Tipo de Relación</div>
+                        <div class="info-value">${selectedCompany.tipo_relacion}</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon" style="background: #fef3c7; color: #d97706;">📍</div>
+                        <div class="info-label">Ubicación</div>
+                        <div class="info-value">${selectedCompany.ciudad}, ${selectedCompany.pais}</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon" style="background: #e0e7ff; color: #6366f1;">📅</div>
+                        <div class="info-label">Fundación</div>
+                        <div class="info-value">${selectedCompany.ano_fundacion}</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon" style="background: #fce7f3; color: #be185d;">👨‍💼</div>
+                        <div class="info-label">Empleados</div>
+                        <div class="info-value">${selectedCompany.empleados}</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon" style="background: #d1fae5; color: #059669;">💰</div>
+                        <div class="info-label">Financiación</div>
+                        <div class="info-value">${selectedCompany.financiacion_total}</div>
+                    </div>
+                </div>
+                
+                <div class="contact-section">
+                    <h3 class="section-title">Contacto:</h3>
+                    <div class="contact-grid">
+                        <div class="contact-item">
+                            <span>🌐</span>
+                            <a href="${selectedCompany.sitio_web}" target="_blank">${selectedCompany.sitio_web}</a>
+                        </div>
+                        <div class="contact-item">
+                            <span>📧</span>
+                            <a href="mailto:${selectedCompany.email}">${selectedCompany.email}</a>
+                        </div>
+                        <div class="contact-item">
+                            <span>💼</span>
+                            <a href="${selectedCompany.linkedin}" target="_blank">LinkedIn</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="solutions-section">
+                    <div class="section-title">Soluciones (${selectedCompany.soluciones.length})</div>
+                    <div class="section-subtitle">Productos y servicios ofrecidos por la empresa</div>
+                    
+                    ${selectedCompany.soluciones.map(solution => `
+                        <div class="solution-card">
+                            <div class="solution-name">${solution.nombre}</div>
+                            <div class="solution-description">${solution.descripcion}</div>
+                            <div class="solution-meta">
+                                <div class="solution-category">Categoría: ${solution.categoria_insurtech}</div>
+                                <div class="tech-tags">
+                                    ${solution.tecnologias.split(', ').map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <div class="query-section">
+                    <div class="query-title">Consultar Agente Especializado</div>
+                    <div class="query-subtitle">Realiza preguntas específicas sobre ${selectedCompany.nombre_oficial}</div>
+                    
+                    <div class="query-form">
+                        <textarea 
+                            id="queryInput" 
+                            class="query-input" 
+                            placeholder="Ej: ¿Cuál es la propuesta de valor de esta empresa y cómo se diferencia de sus competidores?"
+                        ></textarea>
+                        <button class="query-button" onclick="queryAgent()" id="queryButton">
+                            Consultar Agente
+                        </button>
+                    </div>
+                    
+                    <div id="queryResponse" style="display: none;"></div>
+                </div>
+            `;
+        }
+
+        // Consultar agente
+        async function queryAgent() {
+            if (!selectedCompany) return;
+            
+            const question = document.getElementById('queryInput').value.trim();
+            if (!question) return;
+            
+            const button = document.getElementById('queryButton');
+            const responseDiv = document.getElementById('queryResponse');
+            
+            button.disabled = true;
+            button.innerHTML = '<span class="loading"><span class="spinner"></span> Consultando...</span>';
+            
+            try {
+                const response = await fetch(`/api/companies/${selectedCompany.id}/query`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ question })
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    responseDiv.innerHTML = `<div class="query-response">${data.response}</div>`;
+                    responseDiv.style.display = 'block';
+                } else {
+                    responseDiv.innerHTML = `<div class="query-response" style="color: #dc2626;">Error: ${data.error}</div>`;
+                    responseDiv.style.display = 'block';
+                }
+            } catch (error) {
+                responseDiv.innerHTML = `<div class="query-response" style="color: #dc2626;">Error de conexión: ${error.message}</div>`;
+                responseDiv.style.display = 'block';
+            } finally {
+                button.disabled = false;
+                button.innerHTML = 'Consultar Agente';
+            }
+        }
+
+        // Ejecutar análisis
+        async function runAnalysis(type) {
+            const responseDiv = document.getElementById('analysisResponse');
+            responseDiv.style.display = 'block';
+            responseDiv.innerHTML = '<div class="loading"><span class="spinner"></span> Ejecutando análisis...</div>';
+            
+            try {
+                const response = await fetch(`/api/analysis/${type}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    responseDiv.innerHTML = `<div class="query-response">${data.response}</div>`;
+                } else {
+                    responseDiv.innerHTML = `<div class="query-response" style="color: #dc2626;">Error: ${data.error}</div>`;
+                }
+            } catch (error) {
+                responseDiv.innerHTML = `<div class="query-response" style="color: #dc2626;">Error de conexión: ${error.message}</div>`;
+            }
+        }
+
+        // Ejecutar demo
+        function runDemo() {
+            const responseDiv = document.getElementById('demoResponse');
+            responseDiv.style.display = 'block';
+            responseDiv.innerHTML = `
+                <div class="query-response">
+                    <h3>🎯 Demo del Sistema Insurtech España</h3>
+                    
+                    <h4>✅ Funcionalidades Implementadas:</h4>
+                    
+                    <p><strong>📊 Base de Datos:</strong><br>
+                    • ${companies.length} empresas Insurtech españolas<br>
+                    • Campos tipo Crunchbase completos<br>
+                    • ${companies.reduce((total, company) => total + company.soluciones.length, 0)} soluciones catalogadas</p>
+                    
+                    <p><strong>🔍 Sistema de Filtros:</strong><br>
+                    • Búsqueda por texto libre<br>
+                    • Filtro por empresa específica<br>
+                    • Filtro por ubicación geográfica<br>
+                    • Filtro por tipo de solución/propuesta de valor</p>
+                    
+                    <p><strong>🤖 Agentes Especializados:</strong><br>
+                    • Agente por empresa con conocimiento específico<br>
+                    • Respuestas basadas en datos reales<br>
+                    • Análisis de propuestas de valor y diferenciación</p>
+                    
+                    <p><strong>📈 Análisis Transversal:</strong><br>
+                    • Métricas del ecosistema completo<br>
+                    • Distribución geográfica y por modelo de negocio<br>
+                    • Análisis de financiación y empleados</p>
+                    
+                    <p><strong>💻 Interfaz Tipo Streamlit:</strong><br>
+                    • Menú lateral con empresas<br>
+                    • Navegación por pestañas<br>
+                    • Diseño responsive para móvil y desktop</p>
+                    
+                    <h4>🎯 Prueba el Sistema:</h4>
+                    <p>1. Selecciona una empresa del menú lateral<br>
+                    2. Explora su información detallada<br>
+                    3. Haz una consulta al agente especializado<br>
+                    4. Prueba los filtros avanzados<br>
+                    5. Ejecuta un análisis transversal</p>
+                    
+                    <p><strong>✨ Sistema completamente funcional y listo para usar!</strong></p>
+                </div>
+            `;
+        }
+
+        // Inicializar aplicación
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCompanies();
+        });
+    </script>
+</body>
 </html>

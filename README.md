@@ -1,187 +1,186 @@
-# 🚀 Sistema de Agentes Insurtech España
+# 🏢 Sistema de Agentes Insurtech España
 
-Sistema completo de análisis de empresas Insurtech españolas con agentes especializados de IA, interfaz tipo Streamlit y base de datos exhaustiva.
+Sistema completo de análisis inteligente del ecosistema Insurtech español con agentes especializados de IA.
 
-## 🌐 Demo en Vivo
+## 🚀 Demo en Vivo
 
-**[Ver Demo Funcionando](https://e5h6i7cvpdd8.manus.space)**
+**URL:** [https://0vhlizcgnxyn.manus.space](https://0vhlizcgnxyn.manus.space)
 
-*Nota: Si tienes problemas de acceso por restricciones de red, ejecuta el proyecto localmente siguiendo las instrucciones de instalación.*
+## ✨ Características Principales
 
-## 📋 Descripción
+### 📊 Base de Datos Completa
+- **10 empresas Insurtech españolas** con datos reales
+- **Campos tipo Crunchbase**: financiación, empleados, contacto, ubicación
+- **24 soluciones catalogadas** con tecnologías y categorías
+- **Relaciones 1:1 y 1:n** entre empresas y soluciones
 
-Este proyecto proporciona un análisis completo del ecosistema Insurtech español mediante:
+### 🔍 Sistema de Filtros Avanzados
+- **Búsqueda por texto libre** en tiempo real
+- **Filtro por empresa específica** (dropdown)
+- **Filtro por ubicación** (Madrid, Barcelona, Valencia, Sevilla)
+- **Filtro por propuesta de valor** (MGA Digital, Insurance-as-a-Service, etc.)
+- **Contador dinámico** de empresas filtradas
+- **Botón limpiar filtros** cuando hay filtros activos
 
-- **Base de datos exhaustiva** con 10 empresas Insurtech españolas
-- **Interfaz tipo Streamlit** desarrollada en React + TypeScript
-- **Sistema de agentes especializados** con LangChain para consultas IA
-- **Filtros avanzados** por empresa, ubicación y propuesta de valor
-- **API REST completa** para integración con otros sistemas
+### 🤖 Agentes Especializados
+- **Agente por empresa** con conocimiento específico
+- **Consultas en lenguaje natural** sobre cada empresa
+- **Respuestas detalladas** basadas en datos reales
+- **Análisis de propuestas de valor** y diferenciación
+
+### 📈 Análisis Transversal
+- **Análisis de Mercado**: métricas generales, financiación total, distribución
+- **Análisis Geográfico**: concentración por ciudades con datos detallados
+- **Análisis de Modelos de Negocio**: comparativa B2B vs B2C
+
+### 🎨 Interfaz Tipo Streamlit
+- **Menú lateral** con empresas y filtros
+- **Navegación por pestañas** (Consultas, Análisis, Demo)
+- **Diseño responsive** para móvil y desktop
+- **Actualización automática** al cambiar empresa
 
 ## 🏢 Empresas Incluidas
 
-| Empresa | Modelo de Negocio | Ubicación | Financiación | Empleados |
-|---------|-------------------|-----------|--------------|-----------|
-| **Tuio** | MGA Digital | Madrid | €16.7M | 150 |
-| **Weecover** | Insurance-as-a-Service | Madrid | €4.2M | 80 |
-| **Cobee** | Plataforma de Beneficios | Barcelona | €40M | 200 |
-| **BDEO** | Tecnología de Siniestros | Madrid | €25M | 120 |
-| **Barkibu** | Telemedicina Veterinaria | Madrid | €3.5M | 45 |
-| **Insurama** | Seguros Tecnología | Madrid | €8M | 65 |
-| **Stoïk** | Ciberseguros | Madrid | €25M | 35 |
-| **Life5** | Seguros de Vida Digital | Barcelona | €2M | 25 |
-| **Swipet** | Seguros para Mascotas | Valencia | €3M | 40 |
-| **Asistensi** | Asistencia Digital | Sevilla | €4.5M | 55 |
+1. **Tuio** - MGA Digital (Madrid) - €16.7M
+2. **Weecover** - Insurance-as-a-Service (Madrid) - €4.2M
+3. **Cobee** - Plataforma de Beneficios (Barcelona) - €40M
+4. **BDEO** - Tecnología de Siniestros (Madrid) - €25M
+5. **Barkibu** - Telemedicina Veterinaria (Madrid) - €3.5M
+6. **Insurama** - Seguros Tecnología (Madrid) - €8M
+7. **Stoïk** - Ciberseguros (Madrid) - €25M
+8. **Life5** - Seguros de Vida Digital (Barcelona) - €2M
+9. **Swipet** - Seguros para Mascotas (Valencia) - €3M
+10. **Asistensi** - Asistencia Digital (Sevilla) - €4.5M
 
-**Total:** €131.9M en financiación, 815 empleados
+**Total del ecosistema:** €131.9M en financiación, 815 empleados
 
-## 🛠️ Tecnologías
-
-### Frontend
-- **React 19** con TypeScript
-- **Tailwind CSS** para estilos
-- **shadcn/ui** para componentes
-- **Vite** para desarrollo y build
+## 🛠️ Tecnologías Utilizadas
 
 ### Backend
-- **Flask** (Python)
-- **SQLite** para base de datos
-- **LangChain** para agentes IA
-- **Flask-CORS** para API
+- **Flask** - Framework web Python
+- **SQLite** - Base de datos embebida
+- **LangChain** - Framework para agentes IA
+- **OpenAI API** - Modelos de lenguaje
+
+### Frontend
+- **HTML5/CSS3** - Interfaz moderna
+- **JavaScript Vanilla** - Funcionalidad sin dependencias
+- **Responsive Design** - Compatible móvil y desktop
 
 ### Deployment
-- **Manus Cloud** para hosting
-- **Git** para control de versiones
+- **Manus Cloud** - Plataforma de deployment
+- **Git** - Control de versiones
 
 ## 🚀 Instalación y Uso
 
-### Prerrequisitos
-- Node.js 18+
-- Python 3.11+
-- pnpm o npm
-
-### 1. Clonar el repositorio
+### Requisitos Previos
 ```bash
-git clone https://github.com/miguelgonez/insurtech.git
-cd insurtech
+Python 3.8+
+pip (gestor de paquetes Python)
 ```
 
-### 2. Configurar Backend
+### Instalación
 ```bash
-# Crear entorno virtual
-python -m venv venv
-source venv/bin/activate  # En Windows: venv\Scripts\activate
+# Clonar repositorio
+git clone https://github.com/miguelgonez/insurtech.git
+cd insurtech
 
 # Instalar dependencias
 pip install -r requirements.txt
 
-# Ejecutar servidor
+# Ejecutar aplicación
 python src/main.py
 ```
 
-### 3. Configurar Frontend (Desarrollo)
-```bash
-cd insurtech-frontend
-
-# Instalar dependencias
-pnpm install
-
-# Ejecutar en desarrollo
-pnpm run dev
+### Acceso
+```
+http://localhost:5002
 ```
 
-### 4. Acceder a la aplicación
-- **Frontend:** http://localhost:5173
-- **Backend API:** http://localhost:5002
+## 📱 Uso del Sistema
 
-## 📁 Estructura del Proyecto
+### 1. Explorar Empresas
+- Usa el menú lateral para navegar entre empresas
+- Aplica filtros para encontrar empresas específicas
+- Haz clic en una empresa para ver información detallada
+
+### 2. Consultar Agentes
+- Selecciona una empresa
+- Ve a la pestaña "Consultas por Empresa"
+- Escribe tu pregunta en el campo de texto
+- Haz clic en "Consultar Agente"
+
+### 3. Análisis Transversal
+- Ve a la pestaña "Análisis Transversal"
+- Selecciona el tipo de análisis deseado
+- Obtén insights del ecosistema completo
+
+### 4. Demo del Sistema
+- Ve a la pestaña "Demo"
+- Ejecuta el demo completo para ver todas las funcionalidades
+
+## 🔧 Estructura del Proyecto
 
 ```
 insurtech/
-├── src/                          # Backend Flask
-│   ├── main.py                   # Servidor principal
-│   ├── static/                   # Frontend construido
-│   └── routes/                   # Rutas de la API
-├── insurtech-frontend/           # Código fuente React
-│   ├── src/
-│   │   ├── App.tsx              # Componente principal
-│   │   ├── components/ui/       # Componentes UI
-│   │   └── lib/                 # Utilidades
-│   ├── package.json
-│   └── vite.config.js
-├── insurtech_espana.db          # Base de datos SQLite
-├── requirements.txt             # Dependencias Python
-├── PROYECTO_COMPLETO.md         # Documentación técnica
-├── ENTREGABLES_FINALES.md       # Resumen del proyecto
-└── README.md                    # Este archivo
+├── src/
+│   ├── main.py              # Aplicación Flask principal
+│   └── static/
+│       └── index.html       # Interfaz frontend
+├── requirements.txt         # Dependencias Python
+└── README.md               # Documentación
 ```
 
-## 🎯 Funcionalidades
+## 📊 API Endpoints
 
-### ✅ Interfaz Usuario
-- **Menú lateral tipo Streamlit** con todas las empresas
-- **Filtros desplegables** por empresa, ubicación, tipo de solución
-- **Búsqueda en tiempo real**
-- **Vista detallada** de cada empresa con campos tipo Crunchbase
-- **Responsive design** para desktop y móvil
+### Empresas
+- `GET /api/companies` - Lista todas las empresas
+- `GET /api/companies/<id>` - Detalles de empresa específica
+- `POST /api/companies/<id>/query` - Consulta al agente especializado
 
-### ✅ Sistema de Agentes IA
-- **Agentes especializados** por empresa
-- **Consultas en lenguaje natural**
-- **Respuestas detalladas** con análisis especializado
-- **Análisis transversal** del ecosistema
+### Análisis
+- `POST /api/analysis/market` - Análisis de mercado
+- `POST /api/analysis/geographic` - Análisis geográfico
+- `POST /api/analysis/business` - Análisis de modelos de negocio
 
-### ✅ API REST
-- `GET /api/agents/companies` - Listar empresas
-- `POST /api/agents/companies/{id}/query` - Consultar agente
-- `GET /api/agents/companies/{id}/solutions` - Obtener soluciones
-- `POST /api/agents/analysis/{type}` - Análisis transversal
+## 🎯 Casos de Uso
 
-## 🔍 Ejemplos de Uso
+### Para Inversores
+- Analizar el ecosistema Insurtech español
+- Identificar oportunidades de inversión
+- Comparar empresas por métricas clave
 
-### Consultas a Agentes Especializados
-```
-"¿Cuál es la propuesta de valor de Tuio y cómo se diferencia de sus competidores?"
-"¿Qué tecnologías utiliza BDEO para el análisis de siniestros?"
-"¿Cuál es el modelo de financiación de Weecover?"
-```
+### Para Emprendedores
+- Estudiar la competencia
+- Identificar nichos de mercado
+- Analizar modelos de negocio exitosos
 
-### Filtros Disponibles
-- **Por empresa:** Selección directa de cualquier empresa
-- **Por ubicación:** Madrid, Barcelona, Valencia, Sevilla
-- **Por tipo de solución:** MGA Digital, Ciberseguros, Telemedicina, etc.
+### Para Investigadores
+- Obtener datos del sector Insurtech
+- Realizar análisis comparativos
+- Generar insights del mercado
 
-## 📊 Datos y Métricas
+## 🔄 Actualizaciones Recientes
 
-- **10 empresas Insurtech** verificadas y activas
-- **Campos tipo Crunchbase:** Financiación, empleados, ubicación, contacto
-- **Relaciones 1:n:** Cada empresa puede tener múltiples soluciones
-- **Cobertura geográfica:** 4 ciudades principales de España
+### v2.0 (Enero 2025)
+- ✅ Interfaz tipo Streamlit completamente funcional
+- ✅ Filtros desplegables avanzados
+- ✅ Análisis transversal completo
+- ✅ Consultas a agentes IA operativas
+- ✅ Diseño responsive para móvil
+- ✅ 10 empresas con datos actualizados
 
-## 🤝 Contribuir
+## 📞 Contacto
 
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
+**Desarrollado por:** Miguel González  
+**GitHub:** [miguelgonez](https://github.com/miguelgonez)  
+**Proyecto:** [insurtech](https://github.com/miguelgonez/insurtech)
 
 ## 📄 Licencia
 
-Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para detalles.
-
-## 👨‍💻 Autor
-
-**Miguel González**
-- GitHub: [@miguelgonez](https://github.com/miguelgonez)
-
-## 🙏 Agradecimientos
-
-- Datos recopilados de fuentes públicas del ecosistema Insurtech español
-- Inspirado en la necesidad de centralizar información del sector
-- Desarrollado con las mejores prácticas de desarrollo web moderno
+Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
 
 ---
 
-⭐ **¡Dale una estrella si este proyecto te resulta útil!**
+**🎉 Sistema completamente funcional y listo para usar**
 
